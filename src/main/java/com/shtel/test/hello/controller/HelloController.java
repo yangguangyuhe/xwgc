@@ -47,7 +47,7 @@ public class HelloController {
 		
 		int labbleid = 0;
 		OfferTem tem = new OfferTem();
-		tem.setName("神");
+		tem.setName("神1");
 		tem.setCode("DNS");
 		List<String> list = new ArrayList<String>();
 		list.add("2018");
