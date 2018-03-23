@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shtel.test.hello.mapper.OfferDimensionMapper" >
+  <resultMap id="BaseResultMap" type="com.shtel.test.hello.entity.OfferDimension" >
+    <id column="dimensionid" property="dimensionid" jdbcType="INTEGER" />
+    <result column="dimensionname" property="dimensionname" jdbcType="VARCHAR" />
+    <result column="labbleid" property="labbleid" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    dimensionid, dimensionname, labbleid, number
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shtel.test.hello.entity.OfferDimensionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_offerdimension
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_offerdimension
+    where dimensionid = #{dimensionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_offerdimension
+    where dimensionid = #{dimensionid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shtel.test.hello.entity.OfferDimensionExample" >
+    delete from t_offerdimension
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shtel.test.hello.entity.OfferDimension" >
+    insert into t_offerdimension (dimensionid, dimensionname, labbleid, 
+      number)
+    values (#{dimensionid,jdbcType=INTEGER}, #{dimensionname,jdbcType=VARCHAR}, #{labbleid,jdbcType=INTEGER}, 
+      #{number,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shtel.test.hello.entity.OfferDimension" >
+    insert into t_offerdimension
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dimensionid != null" >
+        dimensionid,
+      </if>
+      <if test="dimensionname != null" >
+        dimensionname,
+      </if>
+      <if test="labbleid != null" >
+        labbleid,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dimensionid != null" >
+        #{dimensionid,jdbcType=INTEGER},
+      </if>
+      <if test="dimensionname != null" >
+        #{dimensionname,jdbcType=VARCHAR},
+      </if>
+      <if test="labbleid != null" >
+        #{labbleid,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shtel.test.hello.entity.OfferDimensionExample" resultType="java.lang.Integer" >
+    select count(*) from t_offerdimension
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_offerdimension
+    <set >
+      <if test="record.dimensionid != null" >
+        dimensionid = #{record.dimensionid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dimensionname != null" >
+        dimensionname = #{record.dimensionname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.labbleid != null" >
+        labbleid = #{record.labbleid,jdbcType=INTEGER},
+      </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_offerdimension
+    set dimensionid = #{record.dimensionid,jdbcType=INTEGER},
+      dimensionname = #{record.dimensionname,jdbcType=VARCHAR},
+      labbleid = #{record.labbleid,jdbcType=INTEGER},
+      number = #{record.number,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shtel.test.hello.entity.OfferDimension" >
+    update t_offerdimension
+    <set >
+      <if test="dimensionname != null" >
+        dimensionname = #{dimensionname,jdbcType=VARCHAR},
+      </if>
+      <if test="labbleid != null" >
+        labbleid = #{labbleid,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+    </set>
+    where dimensionid = #{dimensionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shtel.test.hello.entity.OfferDimension" >
+    update t_offerdimension
+    set dimensionname = #{dimensionname,jdbcType=VARCHAR},
+      labbleid = #{labbleid,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER}
+    where dimensionid = #{dimensionid,jdbcType=INTEGER}
+  </update>
+</mapper>
