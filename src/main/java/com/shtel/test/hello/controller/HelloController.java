@@ -47,7 +47,7 @@ public class HelloController {
 		
 		int labbleid = 0;
 		OfferTem tem = new OfferTem();
-		tem.setName("Éñ");
+		tem.setName("ç¥ž");
 		tem.setCode("DNS");
 		List<String> list = new ArrayList<String>();
 		list.add("2018");
@@ -56,16 +56,16 @@ public class HelloController {
 
 		if(tem!=null){
 			if(!"".equals(tem.getCode())&&tem.getCode().length()>0){
-				//Ê×ÏÈÅÐ¶ÏÊÇ·ñ´æÔÚÏàÍ¬µÄ±àÂë£¿
+				//ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½Ä±ï¿½ï¿½ë£¿
 				OfferLabble offerLabble = offerLabbleService.queryOfferLabbleByCode(tem.getCode());
 				if(offerLabble==null){
-					//Ö»Òª±àÂë²»Îª¿Õ£¬±£´æµ½±íÖÐ
+					//Ö»Òªï¿½ï¿½ï¿½ë²»Îªï¿½Õ£ï¿½ï¿½ï¿½ï¿½æµ½ï¿½ï¿½ï¿½ï¿½
 					OfferLabble labble = new OfferLabble();
 					labble.setName(tem.getName());
 					labble.setCode(tem.getCode());
 					labbleid = offerLabbleService.addLabble(labble);
 				}else{
-					return "ÏàÍ¬µÄ±àÂë´æÔÚ£¬²»ÄÜÖØ¸´";
+					return "ï¿½ï¿½Í¬ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½";
 				}
 			}
 			if(tem.getList().size()>0){ 
@@ -80,15 +80,15 @@ public class HelloController {
 			}
 		}
 
-		return "´´½¨³É¹¦";
+		return "ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½";
 	}
 	
 	@RequestMapping("/prefix")
 	@ResponseBody
 	public String getPrefix(@RequestParam String code){
-		//Èç¹û´«ÈëµÄÊÇÃû³Æ±àÂë£¬ÔòÐèÒªÓÃÃû³Æ±àÂë²éÑ¯id
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½Ñ¯id
 		OfferLabble labble = offerLabbleService.queryOfferLabbleByCode(code);
-		//È»ºóÍ¨¹ýidÀ´²éÑ¯Î¬¶ÈÊýÁ¿
+		//È»ï¿½ï¿½Í¨ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½Ñ¯Î¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		List<OfferDimension> list = offerDimensionService.queryOfferDimensionByLabbleId(labble.getId());
 		
 		StringBuffer sbuffer = new StringBuffer(labble.getCode());

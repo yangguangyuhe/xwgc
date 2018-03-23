@@ -19,7 +19,7 @@ public class OfferLabbleController {
     public int addUser(OfferLabble labble){
 		
 		labble = new OfferLabble();
-		labble.setName("∂©µ•");
+		labble.setName("ËÆ¢Âçï");
 		labble.setCode("dingdan");
 		int result = offerLabbleService.addLabble(labble);
 		System.out.println(labble.getId());
