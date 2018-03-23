@@ -56,16 +56,16 @@ public class HelloController {
 
 		if(tem!=null){
 			if(!"".equals(tem.getCode())&&tem.getCode().length()>0){
-				//�����ж��Ƿ������ͬ�ı��룿
+				//查询数据库中是否有相同的code，
 				OfferLabble offerLabble = offerLabbleService.queryOfferLabbleByCode(tem.getCode());
 				if(offerLabble==null){
-					//ֻҪ���벻Ϊ�գ����浽����
+					//ֻ没有相同的code则保存到数据库中
 					OfferLabble labble = new OfferLabble();
 					labble.setName(tem.getName());
 					labble.setCode(tem.getCode());
 					labbleid = offerLabbleService.addLabble(labble);
 				}else{
-					return "��ͬ�ı�����ڣ������ظ�";
+					return "有相同的code，不能保存";
 				}
 			}
 			if(tem.getList().size()>0){ 
@@ -80,15 +80,15 @@ public class HelloController {
 			}
 		}
 
-		return "�����ɹ�";
+		return "";
 	}
 	
 	@RequestMapping("/prefix")
 	@ResponseBody
 	public String getPrefix(@RequestParam String code){
-		//�������������Ʊ��룬����Ҫ�����Ʊ����ѯid
+		//查询
 		OfferLabble labble = offerLabbleService.queryOfferLabbleByCode(code);
-		//Ȼ��ͨ��id����ѯά������
+		//查询
 		List<OfferDimension> list = offerDimensionService.queryOfferDimensionByLabbleId(labble.getId());
 		
 		StringBuffer sbuffer = new StringBuffer(labble.getCode());
